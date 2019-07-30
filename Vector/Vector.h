@@ -27,14 +27,14 @@ public:
 	T& operator[] (Rank r) const;
 	Vector<T> & operator= (Vector<T> const&);
 	T remove(Rank r);
+	int remove(Rank lo, Rank hi);
 	Rank insert(T const& e);
 	Rank insert(Rank r, T const& e);
 
 	/* travesing */
-	void traverse();
+	void traverse(void(* visit) (T& ));
 
-	template<class VST>
-	void traverse(VST&);//using function object, can be modified globally
+	template<class VST> void traverse(VST& visit);
 
 protected:
 	Rank _size;
@@ -53,8 +53,4 @@ protected:
 
 #endif
 
-template<class T>
-template<class VST>
-inline void Vector<T>::traverse(VST &)
-{
-}
+
