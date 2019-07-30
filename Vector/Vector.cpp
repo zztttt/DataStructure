@@ -74,8 +74,8 @@ Rank Vector<T>::size() const{
 
 /*
 * Usage: get whether this Vector is empty
-* return true  if _size = 0
-*		 flase if _size > 0
+* return true  if _size = 0 
+*        false if _size > 0
 */
 template<class T>
 bool Vector<T>::empty() const{
@@ -86,7 +86,7 @@ bool Vector<T>::empty() const{
 /*
 * Usage: find element e in Vector
 * return t(V[t]=e) if succeed
-*		 -1		   if fail
+*	 -1	   if fail
 */
 template<class T>
 Rank Vector<T>::find(T const & e) const{
@@ -96,7 +96,7 @@ Rank Vector<T>::find(T const & e) const{
 /*
 * Usage: find the element from [ V[lo], V[hi] ), excluding V[hi]
 * return t(V[t]=e) if succeed
-*		 lo-1	   if fail
+*        lo-1	   if fail
 */
 template<class T>
 Rank Vector<T>::find(T const & e, Rank lo, Rank hi) const{
