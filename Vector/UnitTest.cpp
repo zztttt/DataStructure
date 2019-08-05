@@ -1,8 +1,10 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include "../DataStructure/Vector.h"
+#include<vector>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using std::vector;
 
 namespace UnitTest{		
 	TEST_CLASS(UnitTest1){
@@ -110,6 +112,42 @@ namespace UnitTest{
 			Assert::AreEqual(v.find(6, 1, 3), 0);
 			Assert::AreEqual(v.find(1, 2, 4), 1);
 			Assert::AreEqual(v.find(5, 0, 3), -1);
+		}
+		TEST_METHOD(LARGE) {
+			// check init
+			v = Vector<int>();
+			vector<int> mask = vector<int>();
+			Assert::AreEqual(v.size(), (int)mask.size());
+
+			// loop operation
+			int loop = 10;
+			int base = 10000;
+			for (int i = 1; i <= loop; i++) {
+				// insert
+				for (int j = 0; j < i * base; j++) {
+					v.insert(j);
+					mask.push_back(j);
+				}
+				Assert::AreEqual(v.size(), (int)mask.size());
+				int size = v.size();
+				for (int q = 0; q < size; q++) {
+					Assert::AreEqual(v[q], mask[q]);
+				}
+				// remove 
+				for (int k = 0; k < i * base - 1; k++) {
+					Assert::AreEqual(v[0], mask[0]);
+					v.remove(0);
+					mask.erase(mask.begin());
+				}
+				Assert::AreEqual(v.size(), (int)mask.size());
+			}
+
+			// check valid
+			Assert::AreEqual(v.size(), (int)mask.size());
+			int size = v.size();
+			for (int i = 0; i < size; i++) {
+				Assert::AreEqual(v[i], mask[i]);
+			}
 		}
 	};
 }

@@ -298,5 +298,7 @@ void Vector<T>::shrink() {
 	T* oldElem = _elem;
 	_capacity = _capacity >> 1;
 	_elem = new T[_capacity];
+	for (int i = 0; i < _size; i++)
+		_elem[i] = oldElem[i];
 	delete[] oldElem;
 }
