@@ -7,7 +7,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using std::vector;
 
 namespace UnitTest{		
-	TEST_CLASS(UnitTest1){
+	TEST_CLASS(VectorUnitTest){
 	public:
 		Vector<int> v;
 
@@ -113,7 +113,7 @@ namespace UnitTest{
 			Assert::AreEqual(v.find(1, 2, 4), 1);
 			Assert::AreEqual(v.find(5, 0, 3), -1);
 		}
-		TEST_METHOD(LARGE) {
+		TEST_METHOD(Large) {
 			// check init
 			v = Vector<int>();
 			vector<int> mask = vector<int>();
