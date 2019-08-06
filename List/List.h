@@ -66,6 +66,10 @@ public:
 
 //=============================================
 //----------------ListNode---------------------
+/*
+* Usage: insert a new ListNode as the pred of this
+* return the new ListNode*
+*/
 template<class T>
 ListNode<T>* ListNode<T>::insertAsPred(T const & e) {
 	ListNode<T>* cur = new ListNode(e, pred, this);
@@ -75,6 +79,10 @@ ListNode<T>* ListNode<T>::insertAsPred(T const & e) {
 	return cur;
 }
 
+/*
+* Usage: insert a new ListNode as the succ of this
+* return the new ListNode*
+*/
 template<class T>
 ListNode<T>* ListNode<T>::insertAsSucc(T const & e) {
 	ListNode<T>* cur = new ListNode(e, this, succ);
@@ -85,6 +93,10 @@ ListNode<T>* ListNode<T>::insertAsSucc(T const & e) {
 
 //==============================================
 //---------------------List---------------------
+/*
+* Usage: basic init, just having a dummy head and dummy tail
+* no return
+*/
 template<class T>
 inline void List<T>::init() {
 	head = new ListNode<T>;
@@ -142,6 +154,8 @@ List<T>::List(List<T> const & L) {
 }
 
 /*
+* Usage: param(List<T>, Rank, int)
+* no return
 * WARNING: BUG! 
 * L[r] equals to the value stored in Rank r p, but not the pointer
 */
@@ -162,11 +176,19 @@ List<T>::List(List<T> const & L, Rank r, int n) {
 	copyNodes(p, n);
 }
 
+/*
+* Usage: param(ListNode<T>*, int)
+* no return
+*/
 template<class T>
 List<T>::List(ListNode<T>* p, int n) {
 	copyNodes(p, n);
 }
 
+/*
+* Usage: deconstructor
+* no return
+*/
 template<class T>
 inline List<T>::~List() {
 	clear();
@@ -174,12 +196,21 @@ inline List<T>::~List() {
 	delete tail;
 }
 
+/*
+* Usage: get the size of List
+* return _size
+*/
 template<class T>
 inline Rank List<T>::size() const {
 	assert(_size >= 0);
 	return _size;
 }
 
+/*
+* Usage: get whether this List is empty
+* return true  if _size == 0
+*        false if _size > 0
+*/
 template<class T>
 inline bool List<T>::empty() const {
 	assert(_size >= 0);
@@ -201,22 +232,41 @@ T & List<T>::operator[](Rank r) const {
 	return p->data;
 }
 
+/*
+* Usage: get L[0]
+* return L[0]
+*/
 template<class T>
 inline ListNode<T>* List<T>::first() const {
-
+	assert(_size > 0);
 	return head->succ;
 }
 
+/*
+* Usage: get L[_size-1]
+* return L[_size-1]
+*/
 template<class T>
 inline ListNode<T>* List<T>::last() const {
+	assert(_size > 0);
 	return tail->pred;
 }
 
+/*
+* Usage: judge whether ListNode* p is valid
+* return true  if p is neither head or tail and is not NULL
+*        false if others
+*/
 template<class T>
 inline bool List<T>::valid(ListNode<T>* p) {
 	return p && (tail != p) && (head != p);
 }
 
+/*
+* Usage: find e in the List
+* return ListNode* p if found
+*        Null        else
+*/
 template<class T>
 inline ListNode<T>* List<T>::find(T const & e) const {
 	return find(e, _size, tail);
@@ -224,7 +274,8 @@ inline ListNode<T>* List<T>::find(T const & e) const {
 
 /*
 * Usage: find e in [p - n, p)
-* return 
+* return ListNode* p if found
+*        NULL        else
 */
 template<class T>
 ListNode<T>* List<T>::find(T const & e, int n, ListNode<T>* p) const {
