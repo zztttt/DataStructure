@@ -151,7 +151,7 @@ namespace UnitTest {
 			TreeNode<int>* p = root;
 
 			int loop = 10;
-			int base = 1000;
+			int base = 100;
 			for (int i = 1; i <= loop; i++) {
 				// insert
 				for (int j = 0; j < i*base; j++) {
@@ -170,7 +170,7 @@ namespace UnitTest {
 					while (!IsLeaf(*p)) {
 						p = HasLChild(*p) ? p->lc : p->rc;
 					}
-					tree.remove(p);
+					Assert::AreEqual(tree.remove(p), 1);
 				}
 
 				// check again
